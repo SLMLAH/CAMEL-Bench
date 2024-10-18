@@ -3,55 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Domain Chart</title>
+    <title>CAMEL-Bench Domains</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 img {
+            width: 50px;
+            margin-right: 20px;
+        }
+        p.abstract {
+            font-size: 18px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        #pie-chart {
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+        }
+        .bar-chart {
+            width: 400px;
+            height: 300px;
+            display: inline-block;
+            margin: 20px;
+        }
+        .chart-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Interactive Domains and Number of Questions</h1>
-    <div id="chart" style="width: 100%; max-width: 600px; height: 400px;"></div>
 
-    <select id="chart-type" onchange="updateChart()">
-        <option value="bar">Bar Chart</option>
-        <option value="pie">Pie Chart</option>
-    </select>
-    
+    <!-- Logo and Title -->
+    <h1>
+        <img src="your-logo.png" alt="Logo"> CAMEL-Bench Domains
+    </h1>
+
+    <!-- Abstract Text -->
+    <p class="abstract">
+        This is a placeholder for the abstract text. You can add any introductory or descriptive content about CAMEL-Bench here.
+    </p>
+
+    <!-- Pie Chart -->
+    <div id="pie-chart"></div>
+
+    <!-- Bar Charts -->
+    <div class="chart-grid">
+        <div id="bar-chart-1" class="bar-chart"></div>
+        <div id="bar-chart-2" class="bar-chart"></div>
+        <div id="bar-chart-3" class="bar-chart"></div>
+        <div id="bar-chart-4" class="bar-chart"></div>
+        <div id="bar-chart-5" class="bar-chart"></div>
+        <div id="bar-chart-6" class="bar-chart"></div>
+        <div id="bar-chart-7" class="bar-chart"></div>
+        <div id="bar-chart-8" class="bar-chart"></div>
+    </div>
 
     <script>
-        function updateChart() {
-            var chartType = document.getElementById('chart-type').value;
-            var data = [];
-            
-            if (chartType === 'bar') {
-                data = [{
-                    type: 'bar',
-                    x: ['Multimodal Understanding and Reasoning', 'OCR and Document Understanding', 
-                        'Chart and Diagram Understanding', 'Video Understanding', 
-                        'Cultural Specific Understanding', 'Medical Imaging',
-                        'Agricultural Image Understanding', 'Remote Sensing Understanding'],
-                    y: [14251, 7931, 2820, 765, 1285, 506, 769, 709],
-                    marker: {
-                        color: 'rgba(58,71,80,0.8)'
-                    },
-                    text: ['14,251', '7,931', '2,820', '765', '1,285', '506', '769', '709'],
-                    textposition: 'auto'
-                }];
-            } else if (chartType === 'pie') {
-                data = [{
-                    type: 'pie',
-                    labels: ['Multimodal Understanding and Reasoning', 'OCR and Document Understanding', 
-                             'Chart and Diagram Understanding', 'Video Understanding', 
-                             'Cultural Specific Understanding', 'Medical Imaging',
-                             'Agricultural Image Understanding', 'Remote Sensing Understanding'],
-                    values: [14251, 7931, 2820, 765, 1285, 506, 769, 709]
-                }];
+        // Data for Pie Chart
+        var pieData = [{
+            values: [14251, 7931, 2820, 765, 1285, 506, 769, 709],
+            labels: [
+                'Multimodal Understanding and Reasoning',
+                'OCR and Document Understanding',
+                'Chart and Diagram Understanding',
+                'Video Understanding',
+                'Cultural Specific Understanding',
+                'Medical Imaging',
+                'Agricultural Image Understanding',
+                'Remote Sensing Understanding'
+            ],
+            type: 'pie',
+            marker: {
+                colors: [
+                    '#f8d9e5', // Multimodal Understanding and Reasoning
+                    '#dfc8f0', // OCR and Document Understanding
+                    '#bbd7f4', // Chart and Diagram Understanding
+                    '#b5e1dd', // Video Understanding
+                    '#bde9ca', // Cultural Specific Understanding
+                    '#f5e6b3', // Medical Imaging
+                    '#f7d6b6', // Agricultural Image Understanding
+                    '#fde9c1'  // Remote Sensing Understanding
+                ]
+            },
+            textinfo: 'label+percent',
+            hoverinfo: 'label+percent',
+            hoverlabel: {
+                bgcolor: [
+                    '#e63946', '#457b9d', '#1d3557',
+                    '#2a9d8f', '#a8dadc', '#f4a261',
+                    '#e9c46a', '#fca311'
+                ],
+                font: {
+                    color: 'white'
+                }
             }
-    
-            Plotly.newPlot('chart', data);
+        }];
+
+        var pieLayout = {
+            title: 'CAMEL-Bench Domains',
+            height: 400,
+            width: 600
+        };
+
+        Plotly.newPlot('pie-chart', pieData, pieLayout);
+
+        // Data for Bar Charts (Placeholder)
+        function generateBarData() {
+            return [{
+                x: ['A', 'B', 'C', 'D'],
+                y: [10, 15, 13, 17],
+                type: 'bar',
+                marker: {
+                    color: '#457b9d'
+                }
+            }];
         }
-    
-        // Initialize with the bar chart
-        updateChart();
+
+        var barLayout = {
+            height: 300,
+            width: 400,
+            margin: {
+                t: 30,
+                b: 40
+            }
+        };
+
+        // Generate 8 Bar Charts
+        for (let i = 1; i <= 8; i++) {
+            Plotly.newPlot('bar-chart-' + i, generateBarData(), barLayout);
+        }
     </script>
-    
 </body>
 </html>
