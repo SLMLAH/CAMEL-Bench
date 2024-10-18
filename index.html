@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Domain Chart</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Interactive Domains and Number of Questions</h1>
+    <div id="chart" style="width: 100%; max-width: 600px; height: 400px;"></div>
+
+    <select id="chart-type" onchange="updateChart()">
+        <option value="bar">Bar Chart</option>
+        <option value="pie">Pie Chart</option>
+    </select>
+    
+
+    <script>
+        function updateChart() {
+            var chartType = document.getElementById('chart-type').value;
+            var data = [];
+            
+            if (chartType === 'bar') {
+                data = [{
+                    type: 'bar',
+                    x: ['Multimodal Understanding and Reasoning', 'OCR and Document Understanding', 
+                        'Chart and Diagram Understanding', 'Video Understanding', 
+                        'Cultural Specific Understanding', 'Medical Imaging',
+                        'Agricultural Image Understanding', 'Remote Sensing Understanding'],
+                    y: [14251, 7931, 2820, 765, 1285, 506, 769, 709],
+                    marker: {
+                        color: 'rgba(58,71,80,0.8)'
+                    },
+                    text: ['14,251', '7,931', '2,820', '765', '1,285', '506', '769', '709'],
+                    textposition: 'auto'
+                }];
+            } else if (chartType === 'pie') {
+                data = [{
+                    type: 'pie',
+                    labels: ['Multimodal Understanding and Reasoning', 'OCR and Document Understanding', 
+                             'Chart and Diagram Understanding', 'Video Understanding', 
+                             'Cultural Specific Understanding', 'Medical Imaging',
+                             'Agricultural Image Understanding', 'Remote Sensing Understanding'],
+                    values: [14251, 7931, 2820, 765, 1285, 506, 769, 709]
+                }];
+            }
+    
+            Plotly.newPlot('chart', data);
+        }
+    
+        // Initialize with the bar chart
+        updateChart();
+    </script>
+    
+</body>
+</html>
