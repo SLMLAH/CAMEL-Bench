@@ -19,10 +19,6 @@
             align-items: center;
             justify-content: center;
         }
-        h1 img {
-            width: 60px;
-            margin-right: 30px;
-        }
         h2 {
             font-family: 'Calibri', sans-serif;
             font-size: 32px;
@@ -36,41 +32,22 @@
             max-width: 700px;
             text-align: center;
         }
-        #pie-chart {
-            width: 600px;
-            height: 600px;
-            margin: 0 auto;
-        }
-        .bar-chart {
-            width: 300px;
-            height: 250px;
-            display: inline-block;
-            margin: 20px;
-        }
-        .chart-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width:2000px;
-            margin: 0 auto;
-        }
         .buttons {
             margin-top: 30px;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Space between buttons */
         }
         .buttons a {
             text-decoration: none;
             padding: 10px 20px;
-            margin: 5px;
             font-size: 18px;
             border-radius: 25px;
-            display: inline-block;
             color: white;
             background-color: #333;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 160px;
         }
         .buttons a img {
             width: 24px;
@@ -86,11 +63,52 @@
             margin-top: 40px;
         }
         #pie-chart {
-            margin-left: 40px; /* To align right */
+            width: 600px;
+            height: 600px;
+            margin-left: 40px;
         }
         #left-image {
-            max-width: 600px;
-            max-height: 600px;
+            width: 600px;
+            height: 600px;
+        }
+        .chart-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 2000px;
+            margin: 0 auto;
+        }
+        .section-title {
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+            font-size: 42px;
+            font-weight: bold;
+            margin-top: 40px;
+        }
+        .author-affiliations {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .author-affiliations span {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .author-affiliations .first-two-authors {
+            color: lightblue;
+        }
+        .author-affiliations .affiliation-1 {
+            color: red;
+        }
+        .author-affiliations .affiliation-2 {
+            color: green;
+        }
+        .author-affiliations .affiliation-3 {
+            color: purple;
+        }
+        .author-affiliations .affiliation-4 {
+            color: orange;
         }
     </style>
 </head>
@@ -108,11 +126,11 @@
         <a href="your-huggingface-link" target="_blank"><img src="logos/hf.png" alt="Hugging Face"> Hugging Face</a>
         <a href="your-leaderboard-link" target="_blank"><img src="logos/ex.png" alt="Leaderboard"> Leaderboard</a>
         <a href="your-examples-link" target="_blank"><img src="logos/ex.png" alt="Examples"> Examples</a>
-         <a href="your-github-link" target="_blank"><img src="logos/git.png" alt="GitHub"> GitHub</a>
+        <a href="your-github-link" target="_blank"><img src="logos/git.png" alt="GitHub"> GitHub</a>
     </div>
 
     <!-- Abstract Text -->
-    <h2>A Introduction</h2>
+    <h2>Introduction</h2>
     <p class="abstract">
         CAMEL-Bench is a comprehensive evaluation benchmark designed for Arabic multimodal models, representing over 400 million speakers.<br><br>
         It spans eight diverse domains and 38 sub-domains, including multi-image understanding, complex visual perception, handwritten document analysis, video understanding, medical imaging, plant disease detection, and remote sensing-based land use analysis. <br>
@@ -120,14 +138,22 @@
         Our analysis highlights the need for significant improvement in both open-source and closed-source models, with GPT-4 scoring 62%. The benchmark will be made publicly available.
     </p>
 
+    <!-- Section Title for Image and Pie Chart -->
+    <div class="section-title">
+        CAMEL-Bench Benchmark
+    </div>
+
     <!-- Pie Chart and Image Aligned -->
     <div id="container">
         <!-- Left-side Image Placeholder -->
-        <img id="left-image" src="CAMEL-B.png" alt="CAMEL-B.png" style="width: 400px; height: 300px;">
+        <img id="left-image" src="CAMEL-B.png" alt="CAMEL-B.png">
 
         <!-- Pie Chart -->
         <div id="pie-chart"></div>
     </div>
+
+    <!-- Section Title for Bar Charts -->
+    <h2 style="text-align: center;">CAMEL-Bench Subdomains</h2>
 
     <!-- Bar Charts (Placeholder) -->
     <div class="chart-grid">
@@ -141,32 +167,43 @@
         <div id="bar-chart-8" class="bar-chart"></div>
     </div>
 
+    <!-- Author Affiliations -->
+    <div class="author-affiliations">
+        <span class="first-two-authors"><strong>Sara Ghaboura</strong><sup>1*</sup>, <strong>Ahmed Heakl</strong><sup>1*</sup></span>
+        <span class="affiliation-1">Omkar Thawakar<sup>1</sup>, Ali Alharthi<sup>1</sup></span>
+        <span class="affiliation-2">Ines Riahi<sup>2</sup>, Abduljalil Saif<sup>2</sup>, Jorma Laaksonen<sup>2</sup></span>
+        <span class="affiliation-3">Fahad S. Khan<sup>1,3</sup>, Salman Khan<sup>1,4</sup></span>
+        <span class="affiliation-4">Rao M. Anwer<sup>1,2</sup></span>
+        <br>
+        <sup>1</sup>Mohamed bin Zayed University of AI, <sup>2</sup>Aalto University, <sup>3</sup>Linköping University, <sup>4</sup>Australian National University
+    </div>
+
     <script>
         // Data for Pie Chart
         var pieData = [{
             values: [14251, 7931, 2820, 765, 1285, 506, 769, 709],
             labels: [
-                'Multimodal Und. & Reasoning',
-                'OCR & Document Und.',
-                'Chart and Diagram Und.',
-                'Video Und.',
-                'Cultural Specific Und.',
+                'Multimodal Understanding and Reasoning',
+                'OCR and Document Understanding',
+                'Chart and Diagram Understanding',
+                'Video Understanding',
+                'Cultural Specific Understanding',
                 'Medical Imaging',
-                'Agricultural Image Und.',
-                'Remote Sensing Und.'
+                'Agricultural Image Understanding',
+                'Remote Sensing Understanding'
             ],
             type: 'pie',
             marker: {
                 // Custom colors based on your request
                 colors: [
-                    '#FFEBF9', '#E6D3FF', '#E0EBFE', '#B9E6EA', '#E2FEDB', '#FFFFCF', '#FBDDB2', '#FBDFDA'
+                                        '#FFEBF9', '#E6D3FF', '#E0EBFE', '#B9E6EA', '#E2FEDB', '#FFFFCF', '#FBDDB2', '#FBDFDA'
                 ],
                 line: {
                     color: ['#FF7E79', '#9437FF', '#0096FF', '#168E74', '#2A975A', '#FFC000', '#FF9300', '#FF7E79'],
                     width: 1
                 }
             },
-            hoverinfo: 'label+Percentage',  // No percentages
+            hoverinfo: 'label',  // No percentages
             hoverlabel: {
                 bordercolor: '#808080',  // Gray border when hovered
                 font: {
@@ -211,3 +248,4 @@
     </script>
 </body>
 </html>
+
