@@ -10,7 +10,6 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
         }
         h1 {
             font-size: 36px;
@@ -21,22 +20,24 @@
             justify-content: center;
         }
         h1 img {
-            width:60px;
+            width: 60px;
             margin-right: 30px;
         }
         h2 {
+            font-family: 'Calibri', sans-serif;
             font-size: 32px;
             font-weight: 300;
             margin-top: 20px;
-            font-family: 'Calibri', serif;
+            color: #333;
         }
         p.abstract {
             font-size: 18px;
             margin: 20px auto;
             max-width: 700px;
+            text-align: center;
         }
         #pie-chart {
-            width: 800px;
+            width: 600px;
             height: 600px;
             margin: 0 auto;
         }
@@ -55,6 +56,7 @@
         }
         .buttons {
             margin-top: 30px;
+            text-align: center;
         }
         .buttons a {
             text-decoration: none;
@@ -65,15 +67,36 @@
             display: inline-block;
             color: white;
             background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 160px;
+        }
+        .buttons a img {
+            width: 24px;
+            margin-right: 10px;
         }
         .buttons a:hover {
             background-color: #555;
+        }
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+        }
+        #pie-chart {
+            margin-left: 40px; /* To align right */
+        }
+        #left-image {
+            max-width: 600px;
+            max-height: 600px;
         }
     </style>
 </head>
 <body>
     <h1>
-        <br><br><br><br><br><img src="CAMEL.png" alt="Logo"> CAMEL-Bench
+        <img src="CAMEL.png" alt="Logo"> CAMEL-Bench
     </h1>
 
     <!-- Subtitle -->
@@ -81,11 +104,11 @@
     
     <!-- Buttons for arXiv, Hugging Face, Leaderboard, GitHub, and Examples -->
     <div class="buttons">
-        <a href="your-arxiv-link" target="_blank">arXiv</a>
-        <a href="your-huggingface-link" target="_blank">Hugging Face</a>
-        <a href="your-leaderboard-link" target="_blank">Leaderboard</a>
-        <a href="your-github-link" target="_blank">GitHub</a>
-        <a href="your-examples-link" target="_blank">Examples</a>
+        <a href="your-arxiv-link" target="_blank"><img src="pdf-icon.png" alt="PDF"> arXiv</a>
+        <a href="your-huggingface-link" target="_blank"><img src="huggingface-icon.png" alt="Hugging Face"> Hugging Face</a>
+        <a href="your-leaderboard-link" target="_blank"><img src="leaderboard-icon.png" alt="Leaderboard"> Leaderboard</a>
+        <a href="your-github-link" target="_blank"><img src="github-icon.png" alt="GitHub"> GitHub</a>
+        <a href="your-examples-link" target="_blank"><img src="examples-icon.png" alt="Examples"> Examples</a>
     </div>
 
     <!-- Abstract Text -->
@@ -96,10 +119,16 @@
         Our analysis highlights the need for significant improvement in both open-source and closed-source models, with GPT-4 scoring 62%. The benchmark will be made publicly available.
     </p>
 
-    <!-- Pie Chart -->
-    <div id="pie-chart"></div>
+    <!-- Pie Chart and Image Aligned -->
+    <div id="container">
+        <!-- Left-side Image Placeholder -->
+        <img id="left-image" src="your-image.png" alt="Your Image Placeholder">
 
-    <!-- Bar Charts -->
+        <!-- Pie Chart -->
+        <div id="pie-chart"></div>
+    </div>
+
+    <!-- Bar Charts (Placeholder) -->
     <div class="chart-grid">
         <div id="bar-chart-1" class="bar-chart"></div>
         <div id="bar-chart-2" class="bar-chart"></div>
@@ -116,51 +145,44 @@
         var pieData = [{
             values: [14251, 7931, 2820, 765, 1285, 506, 769, 709],
             labels: [
-                'Multimodal Und. & Reasoning',
-                'OCR & Document Und.',
-                'Chart & Diagram Und.',
-                'Video Und.',
-                'Cultural Specific Und.',
-                'Medical Image Und.',
-                'Agricultural Image Und.',
-                'Remote Sensing Und.'
+                'Multimodal Understanding and Reasoning',
+                'OCR and Document Understanding',
+                'Chart and Diagram Understanding',
+                'Video Understanding',
+                'Cultural Specific Understanding',
+                'Medical Imaging',
+                'Agricultural Image Understanding',
+                'Remote Sensing Understanding'
             ],
             type: 'pie',
             marker: {
-                // Custom colors from the provided screenshot
+                // Custom colors based on your request
                 colors: [
-                    '#FFB6C1', // Light Pink - Multimodal
-                    '#9370DB', // Medium Purple - OCR
-                    '#ADD8E6', // Light Blue - Chart and Diagram
-                    '#90EE90', // Light Green - Video Understanding
-                    '#FFFFE0', // Light Yellow - Cultural Specific
-                    '#FFDEAD', // NavajoWhite - Medical Imaging
-                    '#FFD700', // Gold - Agricultural Image
-                    '#FFA07A'  // Light Salmon - Remote Sensing
+                    '#FFEBF9', '#E6D3FF', '#E0EBFE', '#B9E6EA', '#E2FEDB', '#FFFFCF', '#FBDDB2', '#FBDFDA'
                 ],
                 line: {
-                    color: '#808080',  // Set border color to gray
-                    width: 1.5         // Border width
+                    color: ['#FF7E79', '#9437FF', '#0096FF', '#168E74', '#2A975A', '#FFC000', '#FF9300', '#FF7E79'],
+                    width: 2
                 }
             },
-            hoverinfo: 'label',  // Remove percentages
+            hoverinfo: 'label',  // No percentages
             hoverlabel: {
-                bordercolor: '#808080', // Set hover border color to gray
+                bordercolor: '#808080',  // Gray border when hovered
                 font: {
-                    color: 'black' // Font color on hover
+                    color: 'black'  // Black text on hover
                 }
             }
         }];
 
         var pieLayout = {
             title: 'CAMEL-Bench Domains',
-            height: 400,
+            height: 600,
             width: 600
         };
 
         Plotly.newPlot('pie-chart', pieData, pieLayout);
 
-        // Data for Bar Charts (Placeholder)
+        // Placeholder Data for Bar Charts
         function generateBarData() {
             return [{
                 x: ['A', 'B', 'C', 'D'],
