@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>CAMEL-Bench</title>
+    <title>CAMEL-Bench</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
         body {
@@ -66,34 +66,33 @@
             color: white;
             background-color: #333;
         }
-         .buttons a:hover {
+        .buttons a:hover {
             background-color: #555;
         }
-
-        
     </style>
 </head>
-<h1>
-    <img src="CAMEL.png" alt="Logo"> CAMEL-Bench
-</h1>
+<body>
+    <h1>
+        <img src="CAMEL.png" alt="Logo"> CAMEL-Bench
+    </h1>
 
-<!-- Subtitle -->
-<h2>A Comprehensive Arabic Large Multimodal Multitask Benchmark</h2>
+    <!-- Subtitle -->
+    <h2>A Comprehensive Arabic Large Multimodal Multitask Benchmark</h2>
     
-<!-- Buttons for arXiv, Hugging Face, Leaderboard, GitHub, and Examples -->
-<div class="buttons">
-    <a href="your-arxiv-link" target="_blank">arXiv</a>
-    <a href="your-huggingface-link" target="_blank">Hugging Face</a>
-    <a href="your-leaderboard-link" target="_blank">Leaderboard</a>
-    <a href="your-github-link" target="_blank">GitHub</a>
-    <a href="your-examples-link" target="_blank">Examples</a>
-</div>
-    
+    <!-- Buttons for arXiv, Hugging Face, Leaderboard, GitHub, and Examples -->
+    <div class="buttons">
+        <a href="your-arxiv-link" target="_blank">arXiv</a>
+        <a href="your-huggingface-link" target="_blank">Hugging Face</a>
+        <a href="your-leaderboard-link" target="_blank">Leaderboard</a>
+        <a href="your-github-link" target="_blank">GitHub</a>
+        <a href="your-examples-link" target="_blank">Examples</a>
+    </div>
+
     <!-- Abstract Text -->
     <p class="abstract">
         CAMEL-Bench is a comprehensive evaluation benchmark designed for Arabic multimodal models, representing over 400 million speakers.<br><br>
         It spans eight diverse domains and 38 sub-domains, including multi-image understanding, complex visual perception, handwritten document analysis, video understanding, medical imaging, plant disease detection, and remote sensing-based land use analysis. <br>
-CAMEL-Bench consists of 29,036 manually verified questions to ensure reliable model evaluation. <br>
+        CAMEL-Bench consists of 29,036 manually verified questions to ensure reliable model evaluation.<br>
         Our analysis highlights the need for significant improvement in both open-source and closed-source models, with GPT-4 scoring 62%. The benchmark will be made publicly available.
     </p>
 
@@ -128,27 +127,27 @@ CAMEL-Bench consists of 29,036 manually verified questions to ensure reliable mo
             ],
             type: 'pie',
             marker: {
+                // Custom colors from the provided screenshot
                 colors: [
-                    '#f8d9e5', // Multimodal Und. & Reasoning
-                    '#dfc8f0', // OCR and Document Und.
-                    '#bbd7f4', // Chart and Diagram Und.
-                    '#b5e1dd', // Video Und.
-                    '#bde9ca', // Cultural Specific Und.
-                    '#f5e6b3', // Medical Image Und.
-                    '#f7d6b6', // Agricultural Image Und.
-                    '#fde9c1'  // Remote Sensing Und.
-                ]
-            },
-            //textinfo: 'label+percent',
-            hoverinfo: 'label+percent',
-            hoverlabel: {
-                 bgcolor: [
-                    '#f8d9e5', '#dfc8f0', '#bbd7f4',
-                    '#b5e1dd', '#bde9ca', '#f5e6b3',
-                    '#f7d6b6', '#fde9c1'
+                    '#FFB6C1', // Light Pink - Multimodal
+                    '#9370DB', // Medium Purple - OCR
+                    '#ADD8E6', // Light Blue - Chart and Diagram
+                    '#90EE90', // Light Green - Video Understanding
+                    '#FFFFE0', // Light Yellow - Cultural Specific
+                    '#FFDEAD', // NavajoWhite - Medical Imaging
+                    '#FFD700', // Gold - Agricultural Image
+                    '#FFA07A'  // Light Salmon - Remote Sensing
                 ],
+                line: {
+                    color: '#808080',  // Set border color to gray
+                    width: 1.5         // Border width
+                }
+            },
+            hoverinfo: 'label',  // Remove percentages
+            hoverlabel: {
+                bordercolor: '#808080', // Set hover border color to gray
                 font: {
-                    color: 'gray'
+                    color: 'black' // Font color on hover
                 }
             }
         }];
